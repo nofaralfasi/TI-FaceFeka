@@ -1,8 +1,8 @@
-# FaceFeka_Avia_Nofar
+## FaceFeka
 
 > A Vue.js project
 
-## Build Setup
+### Build Setup
 
 ``` bash
 # install dependencies
