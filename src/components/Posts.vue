@@ -5,8 +5,8 @@
       //- .button(@click="print") PRESS
       .columns
         .column
-          p(@click="isNewPost=true") New Post &nbsp&nbsp
-          i.fa.fa-plus-circle(aria-hidden='true', style="font-size: 39px;", @click="isNewPost=true")          
+          p(@click="isNewPost=true", style="margin: 20px; font: bold 2vw Arial;") New Post &nbsp&nbsp
+          i.fa.fa-plus-circle(aria-hidden='true', style="font-size: 50px; margin: 30px;", @click="isNewPost=true")          
       .columns
         .column
             b-field
@@ -29,7 +29,7 @@
       .columns(style="display: flex; flex-direction: column;")
         .column(v-for="item in posts")
           div(style="display: flex; flex-direction: row;")
-            .card(style="min-width: 300px;")
+            .card(style="width: 500px; max-height: 600px;")
               .card-image(v-if='item.postsPic')
                 figure.image.is-4by3
                   img( :src='item.postsPic', @click="resize(item.postsPic)", alt='Placeholder image')
@@ -41,22 +41,20 @@
                       img( :src='item.postsPic', alt='Placeholder image')
                   .media-content
                     p.title.is-4 {{item.usersName}}
-                    p.subtitle.is-6(@click="getPosts(item.usersID)")  @{{item.usersID}}
+                    //- p.subtitle.is-6(@click="getPosts(item.usersID)")  @{{item.usersID}}
                 .content
                   | {{item.postsContent}}
-                  br
+                  //- br
                   .column.is-full
                         | {{ item.postsDateCreated }}
                   .column.is-full
                     .button(@click="replyPost(item)") Replies
-                    i.fa.fa-arrow-circle-o-down(v-if="replyBool.indexOf(item.postsID)", aria-hidden='true', style="font-size: 39px;", @click="activeReply('insert',item)")
-                    i.fa.fa-arrow-circle-o-right(v-if="!replyBool.indexOf(item.postsID)", aria-hidden='true', style="font-size: 39px;", @click="activeReply('pull',item)")
-                    
+                    i.fa.fa-arrow-circle-o-down(v-if="replyBool.indexOf(item.postsID)", aria-hidden='true', style="font-size: 40px;", @click="activeReply('insert',item)")
+                    i.fa.fa-arrow-circle-o-right(v-if="!replyBool.indexOf(item.postsID)", aria-hidden='true', style="font-size: 40px;", @click="activeReply('pull',item)")               
             .card(v-if="!replyBool.indexOf(item.postsID)", style="min-width: 300px;")
               textarea.textarea(placeholder='Reply', v-model="item.replyContent")
               .button.is-success(@click="sendReply(item)") Send Reply
-                  //- .columns(style="display: flex;")              
-                  
+                  //- .columns(style="display: flex;")                
     b-modal(:active.sync='isImageModalActive')
       p.image.is-4by3
         img(:src="bigImg")
@@ -89,25 +87,9 @@
                 textarea.textarea(placeholder='Reply', v-model="newPostContent")
                 br
                 .button.is-success(@click="newPost") Send
-    //- vue-particles.particules(color="#FFF"
-      :particleOpacity="0.8"
-      :particlesNumber="80"
-      shapeType="circle"
-      :particleSize="8"
-      linesColor="#dedede"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.8"
-      :linesDistance="150"
-      :moveSpeed="3"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
-      clickMode="push")
 </template>
 
 <script>
-
 export default {
   name: 'Login',
   data () {
@@ -139,10 +121,14 @@ export default {
     }
   },
   mounted: function() {
-    this.bringPosts();
+    // this.bringPosts(this.userID, this.username, this.userPassword);
+    this.bringPosts(this.userID);
+    console.log("From  mounted: function() at Posts.vue");
+    console.log("item.usersName: "+item.usersName);
   },
   methods: {
     searchFriends(e){
+      // console.log("E: " +e)
       this.autoHide = true;
       this.autoCData= [];
       if(e){
@@ -173,14 +159,14 @@ export default {
           request["task"] = "insertFriend";
           request["data"] = {};
           request["data"]["followedID"] = item.usersID;
-          console.log("selectedFriend(item, index):item.usersID", item.usersID);
+          console.log("selectedFriend(item, index):item.usersID: ", item.usersID);
           request["data"]["followerID"] = this.$store.state.userLogged;
-          console.log("req",request);
+          console.log("followerID: ",request["data"]["followerID"]);
           if(item.usersID != this.$store.state.userLogged.usersID){
-        this.axios.post('http://localhost/connect.php',request).then((response) => {
+          this.axios.post('http://localhost/connect.php',request).then((response) => {
           response = response.data;
-                  console.log("userID:",this.userID);
-                  if(response[0]!="000"){
+          console.log("userID:",this.userID);
+             if(response[0]!="000"){
                     this.$toast.open({
                       duration: 5000,
                       message: `Something is Wrong! selectedFriend post.vue2 file`,
@@ -196,7 +182,8 @@ export default {
                       type: 'is-success'
                   });
                   this.autoHide = true;
-                  this.bringPosts();
+                  console.log("From selectedFriend -> item.usersName: " + item.usersName);
+                  this.bringPosts(item.usersID);
                   }
           }).catch((err) => {console.error(err);})}
           else{
@@ -221,6 +208,8 @@ export default {
       request["task"] = "insertPost";
       request["data"] = {};
       request["data"]["usersID"] = this.$store.state.userLogged.usersID;
+      var userLoggedID = request["data"]["usersID"];
+      console.log("newPost userLoggedID: " + userLoggedID);
       request["data"]["postsContent"] = this.newPostContent;
       request["data"]["postsPic"] = this.newPostsPicLink;
       request["data"]["private"] = this.newPostIsPrivate ? 1 : 0;
@@ -228,7 +217,7 @@ export default {
           response = response.data;
                   if(response[0]!="000")
                   {
-                    console.log("newPost : post file");
+                    console.log("newPost : failed!");
                     this.wrongeLogin();
                   }
                   else{
@@ -239,7 +228,9 @@ export default {
                       type: 'is-success'
                   });
                  this.isNewPost=false;
-                  this.bringPosts();
+                  console.log("userLoggedID:"  + userLoggedID);
+                  console.log("usersName:"  + item.usersName);                 
+                  this.bringPosts(userLoggedID);
                   }
           }).catch((err) => {console.error(err);})
       }
@@ -293,23 +284,32 @@ export default {
       this.bigImg=img;
       this.isImageModalActive=!this.isImageModalActive;
     },
-    bringPosts(){
+    bringPosts(currUID){
+        //  bringPosts(currUID, currUN, currUP){ 
+      var userID = localStorage.getItem("currentUserID");
+      var userPassword = localStorage.getItem("currentPassword");
+      var username = localStorage.getItem("currentUsername");
+      console.log("bringPosts() Post.vue");
+      console.log("userID:" + userID + "from sent args: " + currUID); //from localStorage is correct, but from sent arg isn't!
+      console.log("userPassword:"  + userPassword);//printed correctly
+      console.log("username:"  + username);//missing
       let request = {};
         request["task"] = "getPosts";
         request["data"] = this.$store.state.userLogged;
-        console.log("0:post:bringPosts()request: " + this.$store.state.userLogged);
+        console.log("0:post:bringPosts()request -> userLogged.usersName: " + this.$store.state.userLogged.usersName); // working!!!
         this.axios.post('http://localhost/connect.php',request).then((response) => {
           response = response.data;
                   console.log("1:post:bringPosts()response: " +response[2]);
+                  // console.log("response[2]:" +response[2]);
                   if(response[0]!="000")
                   {
                     console.log("2:post:bringPosts()  post file");
                     console.log("userID:"+this.userID);
-                    console.log("response[0]:", response[0]);
-                    this.wrongeLogin();
+                    // console.log("response[0]:", response[0]);
+                    //this.wrongeLogin();
                   }
                   else{
-                    console.log("response[0]==000: avia: postsAns", response[2]);
+                    console.log("response[0]==000: ", response[2]);
                     console.log("userID:",this.userID);
                    this.posts = response[2];
                   }
@@ -357,28 +357,39 @@ export default {
 
 <style scoped>
 #posts{
-  background: rgb(5, 243, 17);
-  background-size: 50% 50%;
+  background: rgb(163, 211, 240);
+  background-size: 100% 100%;
 }
 .mainDiv{
-position: absolute;
+position: relative;
 left: 0%;
 top: 20%;
 }
 .columns{
-    margin: 0;
-    padding: 0;
-    height: 60px;
+  justify-content: right;
+  align-self: right;
+  margin-left: 200px;
+  margin-right: auto;    
+  margin-top:  200px;   
+  margin-bottom:  auto;   
+  padding: 80px;
+  height: 50px;
+  width: 50vw;
+
 }
 .box{
   min-width: 224px;
   width: 50vw;
-  margin-left: auto;
-  margin-right: auto;
-  background: rgba(20, 224, 20, 0.788);
+  justify-content: right;
+  align-self: right;
+  margin-left: 200px;
+  margin-right: auto;    
+  margin-top:  200px; 
+  padding: 80px;
+  background: rgba(210, 224, 20, 0.788);
 }
 .mwidth{
-width: 200px;
+width: 2000px;
 display: flex;
 justify-content: center;
 }
@@ -386,7 +397,7 @@ justify-content: center;
   position: fixed;
     height: 100%;
     width: 100vw;
-    background: #11e62e9f;
+    background: #e611b89f;
     z-index: -1;
 }
 .rCards{

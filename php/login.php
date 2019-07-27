@@ -263,7 +263,6 @@ class loginManager extends login
   public function printLastLogins()
   {
     $allUsersArray = array();
-
     $result = $this->DB->query("SELECT  `username`, `status`, `createDate` FROM `login_logs_web` WHERE 1  ORDER BY `createDate` DESC LIMIT 10");
     if ($result) {
       $allUsersArray = $result->fetch_all(MYSQLI_ASSOC);
@@ -286,7 +285,6 @@ class loginManager extends login
                 <td>" . $user['createDate'] . "</td>     
             </tr>
             ");
-
     }
   }
 

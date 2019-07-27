@@ -38,12 +38,13 @@ get items from localstorage and request post of connect
 */
 
 $(window).on("load", function(){
+  this.console.log("When refersh!");
   // Handler when all assets (including images) are loaded
   var userID = localStorage.getItem("currentUserID");
   var userPassword = localStorage.getItem("currentPassword");
   var username = localStorage.getItem("currentUsername");
 
-
+this.console.log("currentUserID:" +userID);
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {

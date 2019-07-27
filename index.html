@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
-
+  <script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.esm.browser.js'
+  </script>
 <head>
     <meta charset="utf-8">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <title>facefeka</title>
+    <title>FaceFeka</title>
+
+  <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+
     <script type = "text/javascript" src = "vue.js"></script>
 </head>
 <body>
@@ -13,6 +21,30 @@
     </div>
     <script type = "text/javascript" src = "src/main.js"></script>
     <!-- built files will be auto injected -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#config-web-app -->
+<!--    <script src="/__/firebase/6.3.1/firebase-app.js"></script>-->
+<!--    <script src="/__/firebase/6.3.1/firebase-auth.js"></script>-->
+<!--    <script src="/__/firebase/6.3.1/firebase-firestore.js"></script>-->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCz_lJug03HktC8rb-sHT5WMm3MwklCues",
+        authDomain: "facefeka-nofar-avia.firebaseapp.com",
+        databaseURL: "https://facefeka-nofar-avia.firebaseio.com",
+        projectId: "facefeka-nofar-avia",
+        storageBucket: "",
+        messagingSenderId: "224351883602",
+        appId: "1:224351883602:web:e42e09cb76612142"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
 </body>
 
 </html>

@@ -26,14 +26,13 @@ Vue.config.productionTip = false;
 window.jQuery = window.$ = require('jquery');
     /* eslint-disable no-new */
 new Vue({
-    el: '#app',
+    // this is the whole window screen content!!
+    el: '#app', 
     router,
     store,
     template: '<App/>',
     components: { App },
     data: {
-        firstname : "Ria",
-        lastname  : "Singh",
         htmlcontent : "<div><h1>Vue Js Template</h1></div>"
      }
 });
