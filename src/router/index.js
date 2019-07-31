@@ -11,27 +11,27 @@ Vue.use(VueMomentJS, moment);
 Vue.use(Router);
 
 export default new Router({
-    routes: [{
-        //     path: '/login',
-        //     name: 'Login',
-        //     component: Login
-        // },
-        // {
-            path: '/posts',
-            name: 'posts',
-            component: posts
-        },
-        {
-            path: '/',
-            name: 'Login',
-            component: Login
-        },
-        {
-            path: '/profile',
-            name: 'Profile',
-            component: Profile
-        }
+  routes: [{
+      //     path: '/login',
+      //     name: 'Login',
+      //     component: Login
+      // },
+      // {
+      path: '/posts',
+      name: 'posts',
+      component: posts
+    },
+    {
+      path: '/',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
+    }
 
 
-    ]
-}) 
+  ]
+})

@@ -9,7 +9,7 @@
         .column
             b-field
               b-input(placeholder='Search Friends',@input="searchFriends",type='search')
-              p.control(multiple='', native-size='4', v-model='selectedOptions', :style='autoHide ? `visibility: hidden;`:``')
+              p.control
                 button.button.is-primary Search
               b-field
                 b-select(multiple='', native-size='4', v-model='selectedOptions', :style='autoHide ? `visibility: hidden;`:``')
@@ -65,10 +65,9 @@
                   .media-left(v-if='item.postsPic6')
                     figure.image.is-48x48
                       img( :src='item.postsPic6', @click="resize(item.postsPic6)", alt='Placeholder image')
-                .media
                   .media-left(v-if='item.postsPerPic')
                     figure.image.is-48x48
-                      img( :src='item.postsPerPic', @click="resize(item.postsPerPic)", alt='Placeholder image')
+                      img( :src='item.postsPerPic', alt='Placeholder image')
                   .media-content
                     p.title.is-4 {{item.usersName}}
                     p.subtitle.is-6(@click="getPosts(item.usersID)")  User id: {{item.usersID}}
@@ -79,7 +78,7 @@
                         | {{ item.postsDateCreated }}
                   .column.is-full
                     .button(@click="replyPost(item)") Replies
-                    i.fa.fa-arrow-circle-o-down(v-if="replyBool.indexOf(item.postsID)", aria-hidden='true', style="font-size: 40px;", @click="activeReply('insert',item)")
+                    i.fa.fa-arrow-circle-o-down(v-if="replyBool.indexOf(item.postsID)", aria-hidden='true', style="font-size: 39px;", @click="activeReply('insert',item)")
                     i.fa.fa-arrow-circle-o-right(v-if="!replyBool.indexOf(item.postsID)", aria-hidden='true', style="font-size: 39px;", @click="activeReply('pull',item)")
                     
             .card(v-if="!replyBool.indexOf(item.postsID)", style="min-width: 300px;")
@@ -146,33 +145,33 @@
                 .columns
                   .column                     
                   .media-content(style="display: flex; flex-direction: row;")
-                    b-field(style="margin-right: 5px; padding: 10px;") Pic Link 1:
-                    b-input(minlength=2, v-model="newPostsPicLink", style="width: 420px; padding: 10px;")
+                    b-field(style="margin-right: 5px;") Pic Link 1:
+                    b-input(minlength=2, v-model="newPostsPicLink", style="width: 500px;")
                 .columns
                   .column
                   .media-content(style="display: flex; flex-direction: row;")
-                    b-field(style="margin-right: 5px; padding: 10px;") Pic Link 2:
-                    b-input(minlength=2, v-model="newPostsPicLink2", style="width: 420px;padding: 10px;")
+                    b-field(style="margin-right: 5px;") Pic Link 2:
+                    b-input(minlength=2, v-model="newPostsPicLink2", style="width: 500px;")
                 .columns
                   .column
                   .media-content(style="display: flex; flex-direction: row;")
-                    b-field(style="margin-right: 5px; padding: 10px;") Pic Link 3:
-                    b-input(minlength=2, v-model="newPostsPicLink3", style="width: 420px;padding: 10px;")
+                    b-field(style="margin-right: 5px;") Pic Link 3:
+                    b-input(minlength=2, v-model="newPostsPicLink3", style="width: 500px;")
                 .columns
                   .column
                   .media-content(style="display: flex; flex-direction: row;")
-                    b-field(style="margin-right: 5px; padding: 10px;") Pic Link 4:
-                    b-input(minlength=2, v-model="newPostsPicLink4", style="width: 420px;padding: 10px;")
+                    b-field(style="margin-right: 5px;") Pic Link 4:
+                    b-input(minlength=2, v-model="newPostsPicLink4", style="width: 500px;")
                 .columns
                   .column
                   .media-content(style="display: flex; flex-direction: row;")
-                    b-field(style="margin-right: 5px; padding: 10px;") Pic Link 5:
-                    b-input(minlength=2, v-model="newPostsPicLink5", style="width: 420px;padding: 10px;")
+                    b-field(style="margin-right: 5px;") Pic Link 5:
+                    b-input(minlength=2, v-model="newPostsPicLink5", style="width: 500px;")
                 .columns
                   .column
                   .media-content(style="display: flex; flex-direction: row;")
-                    b-field(style="margin-right: 5px;padding: 10px;") Pic Link 6:
-                    b-input(minlength=2, v-model="newPostsPicLink6", style="width: 420px;padding: 10px;")
+                    b-field(style="margin-right: 5px;") Pic Link 6:
+                    b-input(minlength=2, v-model="newPostsPicLink6", style="width: 500px;")
                 textarea.textarea(placeholder='Reply', v-model="newPostContent")
                 br
                 .button.is-success(@click="newPost") Send
@@ -194,6 +193,7 @@ export default {
       replies: {},
       authKey: 6,
       userID: "",
+      userName: "",
       password: "",
       userName: "",
       bigImg: "",
@@ -201,6 +201,8 @@ export default {
       formAction: "login",
 
       isNewPost: false,
+      isZero: true,
+      cerrNum: 0,
       isNewDetails: false,
       newPostIsPrivate: false,
       newPostContent: "",
@@ -402,7 +404,6 @@ export default {
       let request = {};
       request["task"] = "insertReply";
       request["data"] = item;
-      request["data"]["usersID"] = this.$store.state.userLogged.usersID;
       if (item.replyContent) {
         this.axios
           .post("http://localhost/connect.php", request)
@@ -614,9 +615,6 @@ export default {
   text-align: center;
   color: #e21a5d;
   margin-top: 60px;
-}
-p{
-  font: bold 10px Arial;
 }
 </style>
 

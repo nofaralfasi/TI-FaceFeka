@@ -10,11 +10,13 @@ import 'buefy/lib/buefy.css'
 import './assets/main.css'
 import VueParticles from 'vue-particles'
 import $ from "jquery"
-import { store } from './store'
+import {
+  store
+} from './store'
 import FullCalendar from 'vue-full-calendar'
 Vue.use(FullCalendar);
 import Icon from 'vue-awesome/icons'
- 
+
 // import Icon from 'vue-awesome/components/Icon'
 // Vue.use(require('vue-moment'));
 // globally (in your main .js file)
@@ -24,15 +26,17 @@ Vue.use(Buefy);
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 window.jQuery = window.$ = require('jquery');
-    /* eslint-disable no-new */
+/* eslint-disable no-new */
 new Vue({
-    // this is the whole window screen content!!
-    el: '#app', 
-    router,
-    store,
-    template: '<App/>',
-    components: { App },
-    data: {
-        htmlcontent : "<div><h1>Vue Js Template</h1></div>"
-     }
+  // this is the whole window screen content!!
+  el: '#app',
+  router,
+  store,
+  template: '<App/>',
+  components: {
+    App
+  },
+  data: {
+    htmlcontent: "<div><h1>Vue Js Template</h1></div>"
+  }
 });

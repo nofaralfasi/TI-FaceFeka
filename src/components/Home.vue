@@ -6,23 +6,23 @@
 
 <script>
 export default {
-  name: 'Login',
-  data () {
+  name: "Login",
+  data() {
     return {
-     user: '',
-     password: '',
-    }
+      user: "",
+      password: ""
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.nav{
-    position: absolute;
-    width: 100%;
-    top: 0px;
-    background-color: mistyrose;
+.nav {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  background-color: mistyrose;
 }
 </style>
  

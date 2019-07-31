@@ -94,14 +94,9 @@ CREATE TABLE `posts` (
   `postsID` int(11) NOT NULL,
   `usersID` int(11) NOT NULL,
   `postsContent` text NOT NULL,
-  `postsPic` varchar(1000) DEFAULT NULL,
-  `postsPic2` varchar(1000) DEFAULT NULL,
-  `postsPic3` varchar(1000) DEFAULT NULL,
-  `postsPic4` varchar(1000) DEFAULT NULL,
-  `postsPic5` varchar(1000) DEFAULT NULL,
-  `postsPic6` varchar(1000) DEFAULT NULL,
+  `postsPic` varchar(256) DEFAULT NULL,
   `postsDateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `postsPerPic` varchar(2000) DEFAULT NULL,
+  `postsPerPic` varchar(256) DEFAULT NULL,
   `private` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -109,14 +104,16 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`postsID`, `usersID`, `postsContent`, `postsPic`,`postsPic2`,`postsPic3`,`postsPic4`,`postsPic5`,`postsPic6`, `postsDateCreated`, `private`,`postsPerPic`) VALUES
-(1, 22222, 'We are engineers, not robots', 'https://sensi.emerson.com/resource/blob/partner-wink-robots-cool-tw-data-4204132.jpg','https://upload.wikimedia.org/wikipedia/he/1/14/LogoDisney.JPG','https://static.askpeople.co.il/tips/pictures/630x505/91_1511031381.jpg','https://images1.calcalist.co.il/PicServer2/20122005/594399/6_l.jpg','https://www.ashops.co.il/Shops/shop_162/products/501/picture_744.jpg','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvP3bzpJEyqMZ9ocvmHrmXokQr5kl4CIlJD34oMF7WwitmqJ-l2g', '2019-07-12 20:42:31', 0,'https://scontent-lhr3-1.cdninstagram.com/vp/ecea2b776939a0dd56bee1dcefa7a5b4/5DAF0ADD/t51.2885-19/12677240_629567913867848_1800421903_a.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com'),
-(2, 22222, 'I Want Ice-Cream.', 'https://sugarspunrun.com/wp-content/uploads/2018/07/Ice-Cream-Cone-Cupcakes-Recipe-1-of-1-6.jpg','https://img.wcdn.co.il/f_auto,w_700/2/4/2/8/2428769-46.jpg','https://www.intex-pool.co.il/images/itempics/58757_10032019163550_large.jpg','https://images-rosh1.yit.co.il//API/Media/Default/WP/2014/01/92275263.jpg','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR91tKryL7ej-Cxkzo1F5N1oqf-PTJ7akRXR8jD7xQdT3a_UH9LgA','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAZvIrFdjefKzDNszjzhg0Y76GMsKTktHurG2qS8b_6aoYwxhD', '2019-07-12 21:26:37', 0,'https://scontent-lhr3-1.cdninstagram.com/vp/ecea2b776939a0dd56bee1dcefa7a5b4/5DAF0ADD/t51.2885-19/12677240_629567913867848_1800421903_a.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com'),
-(5, 33333, 'Play Flappy Birds together!', 'https://i.ytimg.com/vi/WSW-5m8lRMs/maxresdefault.jpg','https://cdn.vox-cdn.com/thumbor/vysE6HXQ1iRyqA1IZqHzREZvI_c=/0x0:639x426/1400x1400/filters:focal(0x0:639x426):format(png)/cdn.vox-cdn.com/assets/3964735/flappy_bird.png',NULL,NULL,NULL,NULL, '2019-07-13 07:26:37', 0,'https://www.startus.cc/system/files/styles/squared_photos_style/private/photo/filehs8rBb.jpg?itok=np9aN8uY&sc=298b6a182ccd20df1eea6197d03f7cc6'),
-(6, 55555, 'I can never find a decent parking spot near the phickus', 'https://media.wired.com/photos/5926b773f3e2356fd800a373/master/w_2130,c_limit/WarOnParking_TA_GettyImages-83314262.png',NULL,NULL,NULL,NULL,NULL, '2019-07-14 20:17:03', 0,'http://www.emedia-p.co.il/wp-content/uploads/2013/08/DS01.jpg'),
-(7, 99999, 'Pretty #bad', 'https://www.hallaminternet.com/assets/Bad-Reviews-Dislike-Netative-Reviews.jpg',NULL,NULL,NULL,NULL,NULL, '2019-07-14 20:25:30', 0,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnqbXblDsbiJnUeExlJkp4KCPfNeOmPNH5EBM00mXksO_RbMIy'),
-(3, 33333, 'Chernobyl', 'https://i.imgur.com/gCPcOBj.jpg','https://f.frogi.co.il/news/640x300/0101700e7cb.jpg','https://www.gadgety.co.il/wp-content/themes/main/thumbs/2019/07/micky-disney-350x233.jpg',NULL,NULL,NULL, '2019-07-13 12:23:17', 1,'https://www.startus.cc/system/files/styles/squared_photos_style/private/photo/filehs8rBb.jpg?itok=np9aN8uY&sc=298b6a182ccd20df1eea6197d03f7cc6'),
-(4, 22222, 'When is the release of Angular 9?', 'https://i0.wp.com/helpdev.eu/wp-content/uploads/2019/06/angular-9.jpg?resize=696%2C557&ssl=1','https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png','https://oauth.net/images/code/nodejs.png',NULL,NULL,NULL, '2019-07-13 12:27:55', 1,'https://scontent-lhr3-1.cdninstagram.com/vp/ecea2b776939a0dd56bee1dcefa7a5b4/5DAF0ADD/t51.2885-19/12677240_629567913867848_1800421903_a.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com');
+INSERT INTO `posts` (`postsID`, `usersID`, `postsContent`, `postsPic`, `postsDateCreated`, `private`,`postsPerPic`) VALUES
+(1, 22222, 'We are engineers, not robots', NULL, '2019-07-12 20:42:31', 0,'https://scontent-lhr3-1.cdninstagram.com/vp/ecea2b776939a0dd56bee1dcefa7a5b4/5DAF0ADD/t51.2885-19/12677240_629567913867848_1800421903_a.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com'),
+(2, 22222, 'my Own post TEST 1', 'https://www.picmonkey.com/_/static/images/index/picmonkey_twitter_02.24fd38f81e59.jpg', '2019-07-12 21:26:37', 0,'https://scontent-lhr3-1.cdninstagram.com/vp/ecea2b776939a0dd56bee1dcefa7a5b4/5DAF0ADD/t51.2885-19/12677240_629567913867848_1800421903_a.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com'),
+(3, 33333, 'time is 3:23', '', '2019-07-13 12:23:17', 1,'https://www.startus.cc/system/files/styles/squared_photos_style/private/photo/filehs8rBb.jpg?itok=np9aN8uY&sc=298b6a182ccd20df1eea6197d03f7cc6'),
+(4, 22222, 'time 15:27', '', '2019-07-13 12:27:55', 1,'https://scontent-lhr3-1.cdninstagram.com/vp/ecea2b776939a0dd56bee1dcefa7a5b4/5DAF0ADD/t51.2885-19/12677240_629567913867848_1800421903_a.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com'),
+(5, 33333, 'my Own post TEST2', 'https://www.picmonkey.com/_/static/images/index/picmonkey_twitter_02.24fd38f81e59.jpg', '2019-07-13 07:26:37', 0,'https://www.startus.cc/system/files/styles/squared_photos_style/private/photo/filehs8rBb.jpg?itok=np9aN8uY&sc=298b6a182ccd20df1eea6197d03f7cc6'),
+(6, 55555, 'asdsad', '', '2019-07-14 20:17:03', 0,'https://www.ubergizmo.com/wp-content/uploads/2011/08/27-Facebook-profile.jpg'),
+(7, 99999, 'Pretty #bad\nhttps://t.co/Qr4lp0a3ni\r\n sentiment:negative.', 'https://www.hallaminternet.com/assets/Bad-Reviews-Dislike-Netative-Reviews.jpg', '2019-07-14 20:25:30', 0,'https://www.ubergizmo.com/wp-content/uploads/2011/08/27-Facebook-profile.jpg');
+
+
 -- --------------------------------------------------------
 
 --
@@ -170,8 +167,8 @@ INSERT INTO `users` (`usersIndex`, `usersID`, `usersName`, `usersPass`) VALUES
 (2, 22222, 'avia', '$7Ssq34cARZQc'),
 (3, 33333, 'nofar', '$7.pB1DRQ1iro'),
 (4, 44444, 'mica', '$7htfyt1oxDZ2'),
-(5, 55555, 'tom', '$71mtWt2hSULA'),
-(6, 66666, 'haim', '$7KFhFYVG4dH6'),
+(5, 55555, 'god', '$71mtWt2hSULA'),
+(6, 66666, 'devil', '$7KFhFYVG4dH6'),
 (7, 99999, 'bibi', '$7lYSi.3FuIRo');
 
 
@@ -188,9 +185,9 @@ INSERT INTO `details` (`userID`, `detailsContent`, `detailsPic`, `userCity`, `us
  ('22222', 'Im a student of mica', 'https://scontent-lhr3-1.cdninstagram.com/vp/ecea2b776939a0dd56bee1dcefa7a5b4/5DAF0ADD/t51.2885-19/12677240_629567913867848_1800421903_a.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com', 'Ramat Hashron', '26'),
  ('33333', 'Im a student of mica', 'https://www.startus.cc/system/files/styles/squared_photos_style/private/photo/filehs8rBb.jpg?itok=np9aN8uY&sc=298b6a182ccd20df1eea6197d03f7cc6', 'Rison Lezion', '25'),
  ('44444', 'The Best Lecturer ever', 'https://yedionpub.afeka.ac.il/yedion/fireflyweb.aspx?prgname=GetFile&Arguments=-N200,-N,-N,-A,-N442,-A,-A,-A,-A,-A', 'Ness-Ziona', '35'),
- ('55555', 'I LOVE CHEESE', 'http://www.emedia-p.co.il/wp-content/uploads/2013/08/DS01.jpg', 'Tel Aviv', '10'),
- ('66666', 'i like cooking', 'https://i.ytimg.com/vi/3zruuf8fbCw/maxresdefault.jpg', 'Rehovot', '20'),
- ('99999', 'Im here for stay', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnqbXblDsbiJnUeExlJkp4KCPfNeOmPNH5EBM00mXksO_RbMIy', 'Jerusalem', '45');
+ ('55555', ' ', 'https://www.ubergizmo.com/wp-content/uploads/2011/08/27-Facebook-profile.jpg', ' ', ' '),
+ ('66666', ' ', 'https://www.ubergizmo.com/wp-content/uploads/2011/08/27-Facebook-profile.jpg', ' ', ' '),
+ ('99999', ' ', 'https://www.ubergizmo.com/wp-content/uploads/2011/08/27-Facebook-profile.jpg', ' ', ' ');
  
  
 
